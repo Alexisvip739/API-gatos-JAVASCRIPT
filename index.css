@@ -1,0 +1,63 @@
+#body{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+#randomMichis{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: rgb(247, 247, 247);
+    width: 50%;
+    margin:auto;
+    border-radius: 20px;  
+    box-shadow: 2px 2px 12px rgb(182, 182, 182);
+}
+
+#imagen1{
+   display: flex; 
+   flex-wrap: nowrap;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+}
+#imagen2{
+    display: flex; 
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+
+#randomMichis img{
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+button{
+    background-color: rgb(255, 255, 255);
+    border: none;
+    box-shadow: 2px 2px 12px rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover{
+    background-color: rgb(135, 135, 135);
+}
