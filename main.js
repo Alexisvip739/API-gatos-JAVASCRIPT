@@ -1,5 +1,5 @@
-const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=c08d415f-dea7-4a38-bb28-7b2188202e46'; //url para obtener los gatos
-const API_URL_FAVOTITES = 'https://api.thecatapi.com/v1/favourites?api_key=c08d415f-dea7-4a38-bb28-7b2188202e46';// url donde se guardaran los gatos favoritos
+const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2'; //url para obtener los gatos
+const API_URL_FAVOTITES = 'https://api.thecatapi.com/v1/favourites';// url donde se guardaran los gatos favoritos
 const API_URL_FAVOTITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=c08d415f-dea7-4a38-bb28-7b2188202e46`; // api para poder eliminar uno de ellos de favoritos
 
 const spanError = document.getElementById('error')
@@ -30,7 +30,12 @@ async function loadRandomMichis() {
 
 // cargamos los gatos que estan en favoritos
 async function loadFavouriteMichis() {
-  const res = await fetch(API_URL_FAVOTITES);
+  const res = await fetch(API_URL_FAVOTITES,{
+    method:'GET',
+    headers:{
+      'X-API-KEY':'c08d415f-dea7-4a38-bb28-7b2188202e46', //autorizacion
+    }
+  });
   const data = await res.json();
   if (res.status !== 200) {
     spanError.innerHTML = "Hubo un error: " + res.status + data.message;
@@ -76,10 +81,11 @@ async function loadFavouriteMichis() {
 async function saveFavouriteMichi(id) {
   const res = await fetch(API_URL_FAVOTITES, {
     method: 'POST', // metodo https post para mandar la imagen a guardar a favoritos
-    headers: {
+    headers: { //headers https
       'Content-Type': 'application/json',
+      'X-API-KEY':'c08d415f-dea7-4a38-bb28-7b2188202e46', //autorizacion
     },
-    body: JSON.stringify({ //stringify el objeto puede estar escrito en python, c, ruby, go etc.. por lo tanto lo casteamos a un string global para cualquier lenguaje de programacion sin que haya errores
+    body: JSON.stringify({ //(body https) stringify el objeto puede estar escrito en python, c, ruby, go etc.. por lo tanto lo casteamos a un string global para cualquier lenguaje de programacion sin que haya errores
       image_id: id
     }),
   });
@@ -98,6 +104,7 @@ async function saveFavouriteMichi(id) {
 async function deleteFavouriteMichi(id) {
   const res = await fetch(API_URL_FAVOTITES_DELETE(id), {//mandamos el id a eliminar  con la url inicializada arriba
     method: 'DELETE',
+    'X-API-KEY':'c08d415f-dea7-4a38-bb28-7b2188202e46', //autorizacion
   });
   const data = await res.json();
   if (res.status !== 200) {
